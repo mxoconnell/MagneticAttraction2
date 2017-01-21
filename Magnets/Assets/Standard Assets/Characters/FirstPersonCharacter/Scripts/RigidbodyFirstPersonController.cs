@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -10,6 +11,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         [SerializeField] private bool I_Pull_Red;
         [SerializeField] private GameObject MyBody;
+        Transform myTransform;
+        int reachOfMagnet = 1;
+
         [Serializable]
         public class MovementSettings
         {
@@ -125,6 +129,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
+
+            myTransform = MyBody.GetComponent<Transform>();
         }
 
 
@@ -135,10 +141,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             /*if(CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
                 m_Jump = true;*/
 
-            if (CrossPlatformInputManager.GetButtonDown("MagnetActivatedWASD"))
+            if(CrossPlatformInputManager.GetButtonDown("MagnetActivatedWASD"))
+            {
                 MagnetActivated = true;
+                Debug.Log("Magnet on!");
+            }
+
             if(CrossPlatformInputManager.GetButtonUp("MagnetActivatedWASD"))
+            {
                 MagnetActivated = false;
+                Debug.Log("Magnet off");
+            }
+                
 
         }
 
@@ -159,10 +173,30 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 RaycastHit hit;
                 Ray ray;
 
-                ray = new Ray(transform.position, transform.forward * 3);
+                ray = new Ray(myTransform.position, myTransform.forward * reachOfMagnet);
                 if(Physics.Raycast(ray, out hit)){
-                    Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
-                    Debug.Log(hit.collider.gameObject.name);
+                    Debug.DrawRay(ray.origin, ray.direction * reachOfMagnet, Color.cyan);
+                    Debug.Log("Magnetic waves are hitting: "+ hit.collider.gameObject.name + "    it is: "+ hit.collider.gameObject.layer);
+
+                    // if the cube is named red TODO this is not a good implementation
+                    // If RED   (8 is red, 9 is blue)
+                    if(hit.collider.gameObject.layer == 8)
+                    {
+                        if(I_Pull_Red)
+                            hit.collider.gameObject.SendMessage("MagneticAttract", myTransform);
+                        else
+                            hit.collider.gameObject.SendMessage("MagneticRepel", myTransform);
+                    }
+
+                    // If RED   (8 is red, 9 is blue)
+                    if(hit.collider.gameObject.layer == 9)
+                    {
+                        if(!I_Pull_Red)
+                            hit.collider.gameObject.SendMessage("MagneticAttract", myTransform);
+                        else
+                            hit.collider.gameObject.SendMessage("MagneticRepel", myTransform);
+                    }
+
                 }
             }
 
@@ -183,9 +217,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                     if(desiredMove != Vector3.zero)
                     {
-                        Transform transform = MyBody.GetComponent<Transform>();
-                        transform.rotation = Quaternion.Slerp(
-                            transform.rotation,
+                        myTransform.rotation = Quaternion.Slerp(
+                            myTransform.rotation,
                             Quaternion.LookRotation(desiredMove),
                             Time.deltaTime*10
                         );
