@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         [SerializeField] private bool I_Pull_Red;
         [SerializeField] private GameObject MyBody;
+        [SerializeField] private GameObject MagnetRange;
         Transform myTransform;
         int reachOfMagnet = 1;
 
@@ -170,6 +171,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Send magnet Ray out. Push or Pull.
             if(MagnetActivated)
             {
+
                 RaycastHit hit;
                 Ray ray;
 
@@ -177,6 +179,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if(Physics.Raycast(ray, out hit)){
                     Debug.DrawRay(ray.origin, ray.direction * reachOfMagnet, Color.cyan);
                     Debug.Log("Magnetic waves are hitting: "+ hit.collider.gameObject.name + "    it is: "+ hit.collider.gameObject.layer);
+                
+
+                //BoxCollider range = MagnetRange.GetComponent<BoxCollider>();
+
+
 
                     // if the cube is named red TODO this is not a good implementation
                     // If RED   (8 is red, 9 is blue)
