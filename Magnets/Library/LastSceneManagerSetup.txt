@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Menu Scene.unity
+=======
+- path: Assets/SceneMatthew.unity
+>>>>>>> refs/remotes/origin/Matthew
   isLoaded: 1
   isActive: 1

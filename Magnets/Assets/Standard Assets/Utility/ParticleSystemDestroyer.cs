@@ -25,7 +25,11 @@ namespace UnityStandardAssets.Utility
             // find out the maximum lifetime of any particles in this effect
             foreach (var system in systems)
             {
+<<<<<<< HEAD
                 m_MaxLifetime = Mathf.Max(system.startLifetime, m_MaxLifetime);
+=======
+                m_MaxLifetime = Mathf.Max(system.main.startLifetime.constant, m_MaxLifetime);
+>>>>>>> refs/remotes/origin/Matthew
             }
 
             // wait for random duration
