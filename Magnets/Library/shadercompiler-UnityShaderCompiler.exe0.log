@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: getPlatforms
 <<<<<<< HEAD
@@ -33,3 +34,7 @@ Cmd: compileSnippet
   api=4 type=1 insize=982 outsize=6378 kw=DIRECTIONAL LIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _EMISSION pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
 =======
 >>>>>>> refs/remotes/origin/Matthew
+=======
+Base path: C:/Program Files/Unity 5.6.0b3/Editor/Data
+Cmd: initializeCompiler
+>>>>>>> refs/remotes/origin/master
