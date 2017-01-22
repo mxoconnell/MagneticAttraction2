@@ -1,8 +1,5 @@
 using System;
-<<<<<<< HEAD
-=======
 using System.Collections.Generic;
->>>>>>> refs/remotes/origin/Matthew
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -12,14 +9,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (CapsuleCollider))]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
-<<<<<<< HEAD
-=======
+
         [SerializeField] private bool I_Pull_Red;
         [SerializeField] private GameObject MyBody;
         Transform myTransform;
         int reachOfMagnet = 1;
 
->>>>>>> refs/remotes/origin/Matthew
         [Serializable]
         public class MovementSettings
         {
@@ -99,12 +94,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private CapsuleCollider m_Capsule;
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
-<<<<<<< HEAD
-        private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
-=======
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded, MagnetActivated;
->>>>>>> refs/remotes/origin/Matthew
-
 
         public Vector3 Velocity
         {
@@ -139,24 +129,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
-<<<<<<< HEAD
-=======
-
             myTransform = MyBody.GetComponent<Transform>();
->>>>>>> refs/remotes/origin/Matthew
         }
 
 
         private void Update()
         {
-<<<<<<< HEAD
             RotateView();
 
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
             }
-=======
             //RotateView();
             
             /*if(CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
@@ -174,8 +158,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Debug.Log("Magnet off");
             }
                 
-
->>>>>>> refs/remotes/origin/Matthew
         }
 
 
@@ -184,8 +166,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             GroundCheck();
             Vector2 input = GetInput();
 
-<<<<<<< HEAD
-=======
             // lookAt.z = 0; // if z is the up direction
             //if(lookAt.magnitude > 0) transform.LookAt(transform.position + lookAt, transform.forward);
            // transform.LookAt(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity));
@@ -224,8 +204,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
 
-
->>>>>>> refs/remotes/origin/Matthew
             if ((Mathf.Abs(input.x) > float.Epsilon || Mathf.Abs(input.y) > float.Epsilon) && (advancedSettings.airControl || m_IsGrounded))
             {
                 // always move along the camera forward as it is the direction that it being aimed at
@@ -239,8 +217,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
                 {
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
-<<<<<<< HEAD
-=======
+
 
                     if(desiredMove != Vector3.zero)
                     {
@@ -250,8 +227,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                             Time.deltaTime*10
                         );
                     }
-
->>>>>>> refs/remotes/origin/Matthew
                 }
             }
 
@@ -280,10 +255,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     StickToGroundHelper();
                 }
             }
-<<<<<<< HEAD
-=======
-            
->>>>>>> refs/remotes/origin/Matthew
+
             m_Jump = false;
         }
 

@@ -19,3 +19,13 @@ C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\De
 C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.Networking.xml
 C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\obj\Debug\Assembly-CSharp.dll
 C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\obj\Debug\Assembly-CSharp.pdb
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\nunit.framework.dll
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.Analytics.dll
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.HoloLens.dll
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.TestRunner.dll
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.VR.dll
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.TestRunner.xml
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.Analytics.xml
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.HoloLens.xml
+C:\Users\tchou\OneDrive\Documents\GitHub\MagneticAttraction2\Magnets\Temp\bin\Debug\UnityEngine.VR.xml

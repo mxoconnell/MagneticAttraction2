@@ -3,19 +3,12 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-<<<<<<< HEAD
-    [RequireComponent(typeof (NavMeshAgent))]
-    [RequireComponent(typeof (ThirdPersonCharacter))]
-    public class AICharacterControl : MonoBehaviour
-    {
-        public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
-=======
+	// the navmesh agent required for the path finding
     [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class AICharacterControl : MonoBehaviour
     {
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
->>>>>>> refs/remotes/origin/Matthew
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
 
@@ -23,11 +16,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
-<<<<<<< HEAD
-            agent = GetComponentInChildren<NavMeshAgent>();
-=======
             agent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
->>>>>>> refs/remotes/origin/Matthew
+
             character = GetComponent<ThirdPersonCharacter>();
 
 	        agent.updateRotation = false;
