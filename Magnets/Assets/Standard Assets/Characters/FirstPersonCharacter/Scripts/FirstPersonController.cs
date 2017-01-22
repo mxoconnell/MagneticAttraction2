@@ -6,10 +6,26 @@ using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
+
+    
+
+
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+
+
+        [SerializeField]
+        private bool I_Pull_Red;
+        [SerializeField]
+        private GameObject MyBody;
+        [SerializeField]
+        private GameObject MagnetRange;
+        Transform myTransform;
+        int reachOfMagnet = 1;
+
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -39,7 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_OriginalCameraPosition;
         private float m_StepCycle;
         private float m_NextStep;
-        private bool m_Jumping;
+        private bool m_Jumping, MagnetActivated;
         private AudioSource m_AudioSource;
 
         // Use this for initialization
@@ -55,15 +71,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            myTransform = MyBody.GetComponent<Transform>();
         }
 
 
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
+            //RotateView();
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+            /*if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
@@ -74,13 +92,26 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
-            }
+            }*/
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
             }
 
-            m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if(CrossPlatformInputManager.GetButtonDown("MagnetActivatedWASD"))
+            {
+                MagnetActivated = true;
+                Debug.Log("Magnet on!");
+            }
+
+            if(CrossPlatformInputManager.GetButtonUp("MagnetActivatedWASD"))
+            {
+                MagnetActivated = false;
+                Debug.Log("Magnet off");
+            }
+
+            //m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
 
 
@@ -94,6 +125,51 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+
+            // Send magnet Ray out. Push or Pull.
+            if(MagnetActivated)
+            {
+
+                RaycastHit hit;
+                Ray ray;
+
+                ray = new Ray(myTransform.position, myTransform.forward * reachOfMagnet);
+                if(Physics.Raycast(ray, out hit))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * reachOfMagnet, Color.cyan);
+                    Debug.Log("Magnetic waves are hitting: " + hit.collider.gameObject.name + "    it is: " + hit.collider.gameObject.layer);
+
+
+                    //BoxCollider range = MagnetRange.GetComponent<BoxCollider>();
+
+
+
+                    // if the cube is named red TODO this is not a good implementation
+                    // If RED   (8 is red, 9 is blue)
+                    if(hit.collider.gameObject.layer == 8)
+                    {
+                        if(I_Pull_Red)
+                            hit.collider.gameObject.SendMessage("MagneticAttract", myTransform);
+                        else
+                            hit.collider.gameObject.SendMessage("MagneticRepel", myTransform);
+                    }
+
+                    // If RED   (8 is red, 9 is blue)
+                    if(hit.collider.gameObject.layer == 9)
+                    {
+                        if(!I_Pull_Red)
+                            hit.collider.gameObject.SendMessage("MagneticAttract", myTransform);
+                        else
+                            hit.collider.gameObject.SendMessage("MagneticRepel", myTransform);
+                    }
+
+                }
+            }
+
+
+
+
+
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at

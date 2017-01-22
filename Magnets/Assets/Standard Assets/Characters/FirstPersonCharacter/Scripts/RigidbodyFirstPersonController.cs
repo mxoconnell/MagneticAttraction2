@@ -9,9 +9,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (CapsuleCollider))]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
         [SerializeField] private bool I_Pull_Red;
         [SerializeField] private GameObject MyBody;
+        [SerializeField] private GameObject MagnetRange;
         Transform myTransform;
         int reachOfMagnet = 1;
 
@@ -95,6 +99,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded, MagnetActivated;
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
 
         public Vector3 Velocity
         {
@@ -129,18 +137,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
             myTransform = MyBody.GetComponent<Transform>();
         }
 
 
         private void Update()
         {
+<<<<<<< HEAD
+=======
             RotateView();
 
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
             }
+>>>>>>> refs/remotes/origin/master
             //RotateView();
             
             /*if(CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
@@ -158,6 +173,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Debug.Log("Magnet off");
             }
                 
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
         }
 
 
@@ -174,6 +193,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Send magnet Ray out. Push or Pull.
             if(MagnetActivated)
             {
+
                 RaycastHit hit;
                 Ray ray;
 
@@ -181,6 +201,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if(Physics.Raycast(ray, out hit)){
                     Debug.DrawRay(ray.origin, ray.direction * reachOfMagnet, Color.cyan);
                     Debug.Log("Magnetic waves are hitting: "+ hit.collider.gameObject.name + "    it is: "+ hit.collider.gameObject.layer);
+                
+
+                //BoxCollider range = MagnetRange.GetComponent<BoxCollider>();
+
+
 
                     // if the cube is named red TODO this is not a good implementation
                     // If RED   (8 is red, 9 is blue)
@@ -204,6 +229,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
             if ((Mathf.Abs(input.x) > float.Epsilon || Mathf.Abs(input.y) > float.Epsilon) && (advancedSettings.airControl || m_IsGrounded))
             {
                 // always move along the camera forward as it is the direction that it being aimed at
@@ -217,7 +246,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
                 {
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
 
                     if(desiredMove != Vector3.zero)
                     {
@@ -227,6 +259,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                             Time.deltaTime*10
                         );
                     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
                 }
             }
 
@@ -255,7 +291,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     StickToGroundHelper();
                 }
             }
+<<<<<<< HEAD
+            
+=======
 
+>>>>>>> refs/remotes/origin/master
             m_Jump = false;
         }
 
