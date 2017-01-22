@@ -29,7 +29,7 @@ public class MagneticCube : MonoBehaviour {
         Vector3 direction = rb.position - magnet.position;
         direction = direction * -1;
 
-        if(direction.magnitude > 2)
+        if(direction.magnitude > .5)
         {
             //Debug.Log("dist:" + direction.magnitude);
             rb.MovePosition(transform.position + direction * Time.deltaTime);
